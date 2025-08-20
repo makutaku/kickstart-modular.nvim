@@ -71,4 +71,17 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Auto-save on focus lost and buffer switch
+vim.o.autowrite = true
+vim.o.autowriteall = true
+
+-- Auto-save when leaving insert mode or text changes
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
+  callback = function()
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand('%') ~= '' and vim.bo.buftype == '' then
+      vim.cmd('silent! write')
+    end
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
