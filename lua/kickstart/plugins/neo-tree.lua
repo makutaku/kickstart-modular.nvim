@@ -14,12 +14,20 @@ return {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    close_if_last_window = false,
+    popup_border_style = "rounded",
+    enable_git_status = true,
+    enable_diagnostics = true,
     filesystem = {
       window = {
         mappings = {
           ['\\'] = 'close_window',
         },
       },
+      follow_current_file = {
+        enabled = false,
+      },
+      hijack_netrw_behavior = "open_default",
     },
   },
 }
